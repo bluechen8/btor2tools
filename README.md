@@ -17,6 +17,15 @@ Build
 -------------------------------------------------------------------------------
 
 From the Btor2Tools root directory configure and build as follows:
+- Set up dependency. Run `./setup-deps.sh`.
+On MacOS, we will face error like `error: definition of implicit copy constructor for 'EndsWithMatcher<std::wstring>'`. This is due to the version of gtest.
+Go to `deps/boolector/cmake/googletest-download.cmake`, change the version tag to `v1.16.0`. And then rerun
+```
+./configure.sh --prefix $(pwd)/../install
+cd build
+make -j$(nproc) install
+```
+- If you want to get btor2aiger tool. Go to `deps/aiger`, delete the content in file `VERSION`. And then, replace the first command below with `./configure.sh --btor2aiger`.
 ```
 ./configure.sh
 cd build
