@@ -804,6 +804,8 @@ print_state_or_input (int64_t id, int64_t pos, int64_t step, bool is_input)
       btorsim_bv_print_without_new_line (current_state[id].bv_state);
       if (l->symbol)
         printf (" %s%s%" PRId64, l->symbol, is_input ? "@" : "#", step);
+      else
+        printf (" var_%" PRId64 "%s%" PRId64, id, is_input ? "@" : "#", step);
       fputc ('\n', stdout);
       break;
     case BtorSimState::Type::ARRAY:
@@ -813,6 +815,8 @@ print_state_or_input (int64_t id, int64_t pos, int64_t step, bool is_input)
         btorsim_bv_print_without_new_line (e.second);
         if (l->symbol)
           printf (" %s%s%" PRId64, l->symbol, is_input ? "@" : "#", step);
+        else
+          printf (" var_%" PRId64 "%s%" PRId64, id, is_input ? "@" : "#", step);
         fputc ('\n', stdout);
       }
       break;
